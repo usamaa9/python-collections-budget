@@ -1,3 +1,4 @@
+from ast import DictComp
 from . import Expense
 import matplotlib.pyplot as plt
 import timeit
@@ -29,6 +30,19 @@ from . import Expense
 expenses = Expense.Expenses()
 expenses.read_expenses('data/spending_data.csv')
 ''', number=100000, globals=globals()))
+
+    fig, ax = plt.subplots()
+    labels = ['Necessary', 'Food', 'Unnecessary']
+
+    # can do comprehension here [sum(x) for x in [x.amount for x in category_exps]]
+    divided_expenses_sum = []
+
+    for category_exps in divided_set_comp:
+        divided_expenses_sum.append(sum([x.amount for x in category_exps]))
+
+    ax.pie(divided_expenses_sum, labels=labels, autopct='%1.1f%%')
+
+    plt.show()
 
 
 if __name__ == "__main__":
