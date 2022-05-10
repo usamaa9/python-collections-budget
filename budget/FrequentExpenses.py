@@ -13,7 +13,7 @@ for expense in expenses.list:
 
 spending_counter = collections.Counter(spending_categories)
 
-top5 = spending_counter.most_common()
+top5 = spending_counter.most_common(5)
 
 categories, count = zip(*top5)
 
